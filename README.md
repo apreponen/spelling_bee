@@ -1,5 +1,7 @@
 # Sanakenno
 
+**Play it here: https://apreponen.github.io/spelling_bee/**
+
 A daily Finnish word puzzle of the "spelling bee" kind: make as many words as you can from seven letters,
 always using the yellow center letter.
 
