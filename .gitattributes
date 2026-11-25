@@ -1,0 +1,2 @@
+# Keep the original Kotus word list exactly as downloaded (it uses Windows line endings).
+data/nykysuomensanalista2022.csv -text

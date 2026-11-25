@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Sanakenno on päivittäinen sanapeli: muodosta suomenkielisiä sanoja kennon seitsemästä kirjaimesta." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>Sanakenno</title>
+    <script>
+      // Apply the player's remembered light/dark choice before the page is drawn.
+      try {
+        var theme = localStorage.getItem("sanakenno:theme");
+        if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <noscript>Sanakenno tarvitsee toimiakseen JavaScriptin.</noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

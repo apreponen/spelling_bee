@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-150 -150 300 300">
+  <g stroke="#a87b00" stroke-width="6">
+    <polygon fill="#f7cf2a" points="52,0 26,45 -26,45 -52,0 -26,-45 26,-45" />
+    <g fill="#e7e7e7">
+      <polygon transform="translate(0 -97)" points="52,0 26,45 -26,45 -52,0 -26,-45 26,-45" />
+      <polygon transform="translate(84 -48.5)" points="52,0 26,45 -26,45 -52,0 -26,-45 26,-45" />
+      <polygon transform="translate(84 48.5)" points="52,0 26,45 -26,45 -52,0 -26,-45 26,-45" />
+      <polygon transform="translate(0 97)" points="52,0 26,45 -26,45 -52,0 -26,-45 26,-45" />
+      <polygon transform="translate(-84 48.5)" points="52,0 26,45 -26,45 -52,0 -26,-45 26,-45" />
+      <polygon transform="translate(-84 -48.5)" points="52,0 26,45 -26,45 -52,0 -26,-45 26,-45" />
+    </g>
+  </g>
+</svg>

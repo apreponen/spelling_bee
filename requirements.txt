@@ -1,0 +1,4 @@
+# Python packages for the data scripts in scripts/
+# Install with:  pip install -r requirements.txt
+wordfreq>=3.1,<4   # word frequencies, used to pick puzzles made of familiar words
+pytest>=8          # runs the tests:  python -m pytest

@@ -1,0 +1,393 @@
+/* Colours for the light theme... */
+:root {
+  --honey: #f7cf2a;
+  --honey-text: #a87b00; /* darker honey for text on light backgrounds */
+  --on-honey: #1a1a1a;
+  --cell: #e7e7e7;
+  --cell-hover: #dcdcdc;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --border: #dcdcdc;
+  --hover: #f2f2f2;
+  --success: #2e8540;
+  --toast-bg: #1a1a1a;
+  --toast-text: #ffffff;
+  color-scheme: light;
+}
+
+/* ...and the dark theme: used when the device prefers it (unless the player chose light)... */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --honey: #f2c81f;
+    --honey-text: #f2c81f;
+    --cell: #3a3a3f;
+    --cell-hover: #46464c;
+    --bg: #121214;
+    --surface: #1b1b1f;
+    --text: #f0f0f0;
+    --muted: #a3a3a8;
+    --border: #36363c;
+    --hover: #26262b;
+    --success: #5cc976;
+    --toast-bg: #f0f0f0;
+    --toast-text: #121214;
+    color-scheme: dark;
+  }
+}
+
+/* ...or when the player chose dark. */
+:root[data-theme="dark"] {
+  --honey: #f2c81f;
+  --honey-text: #f2c81f;
+  --cell: #3a3a3f;
+  --cell-hover: #46464c;
+  --bg: #121214;
+  --surface: #1b1b1f;
+  --text: #f0f0f0;
+  --muted: #a3a3a8;
+  --border: #36363c;
+  --hover: #26262b;
+  --success: #5cc976;
+  --toast-bg: #f0f0f0;
+  --toast-text: #121214;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Avoid double-tap zoom and accidental text selection when tapping quickly on phones. */
+button,
+svg {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--honey-text);
+  text-underline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--honey-text);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ----- Page layout ----- */
+.app {
+  max-width: 1040px;
+  margin: 0 auto;
+  /* At least 16px at the sides, more next to a phone's notch in landscape. */
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 24px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+.brand > div {
+  min-width: 0;
+}
+.brand h1 {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.brand .date {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.logo {
+  width: 34px;
+  height: 30px;
+  flex: none;
+  fill: var(--honey);
+}
+
+.menu {
+  display: flex;
+  gap: 2px;
+  flex: none;
+}
+.menu-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 8px;
+  border: none;
+  border-radius: 20px;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.menu-button:hover:not(:disabled) {
+  background: var(--hover);
+}
+.menu-button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.menu-button svg {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.menu-button svg .fill {
+  fill: currentColor;
+  stroke: none;
+}
+.date .short {
+  display: none;
+}
+/* Phones: icons only, and a short date. */
+@media (max-width: 599px) {
+  .menu-button span,
+  .date .long {
+    display: none;
+  }
+  .date .short {
+    display: inline;
+  }
+}
+
+.game {
+  display: grid;
+  gap: 8px;
+  padding-top: 8px;
+}
+.status {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.play {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-area {
+  position: relative;
+  width: 100%;
+  padding-top: 34px;
+}
+
+/* Wide screens: hive on the left, words on the right. */
+@media (min-width: 860px) {
+  .game {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 48px;
+    padding-top: 24px;
+    align-items: start;
+  }
+  .status {
+    order: 2;
+  }
+  .play {
+    order: 1;
+    padding-top: 40px;
+  }
+}
+
+/* ----- Messages ----- */
+.toast {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: var(--toast-bg);
+  color: var(--toast-text);
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.toast.praise {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.toast.pangram {
+  background: var(--honey);
+  color: var(--on-honey);
+}
+.toast-points {
+  font-weight: 700;
+  color: var(--honey-text);
+}
+.toast.pangram .toast-points {
+  color: inherit;
+}
+.toast-enter-active {
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease;
+}
+.toast-leave-active {
+  transition: opacity 120ms ease;
+}
+.toast-enter-from,
+.toast-leave-to {
+  opacity: 0;
+  transform: translate(-50%, 6px);
+}
+
+/* ----- Buttons under the hive ----- */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+.control {
+  min-width: 96px;
+  height: 52px;
+  padding: 0 20px;
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 80ms ease;
+}
+.control:hover {
+  background: var(--hover);
+}
+.control:active {
+  transform: scale(0.95);
+}
+.control.round {
+  min-width: 52px;
+  width: 52px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+.control.round svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Very narrow phones: no logo, tighter menu. */
+@media (max-width: 374px) {
+  .logo {
+    display: none;
+  }
+  .menu-button {
+    min-width: 36px;
+    padding: 0 6px;
+  }
+}
+
+/* Short phone screens: tighten spacing so the buttons stay on screen.
+   (The hive, rank bar and guess shrink in their own components.) */
+@media (max-height: 700px) and (max-width: 859px) {
+  .topbar {
+    padding: 6px 0;
+  }
+  .input-area {
+    padding-top: 28px;
+  }
+  .control {
+    height: 46px;
+  }
+  .control.round {
+    width: 46px;
+    min-width: 46px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+  }
+}

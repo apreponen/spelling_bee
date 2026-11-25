@@ -1,0 +1,10 @@
+# Extra words that the game should accept, but that are missing from the
+# Kotus list.
+#
+# One word per line, in its base form (perusmuoto), lowercase.
+# Lines starting with # are comments. Empty lines are ignored.
+#
+# After editing this file, run:  python scripts/build_data.py
+#
+# Example (remove the # to activate):
+# tiktokata
